@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:train/core/routes/screen_routes.dart';
+import 'package:train/core/uikit/theme/app_themes_color.dart';
 import 'package:train/core/uikit/theme/theme_data.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarIconBrightness: Brightness.dark,
-      systemNavigationBarIconBrightness: Brightness.dark));
+  SystemChrome.setSystemUIOverlayStyle( const SystemUiOverlayStyle(
+    statusBarColor: AppColors.surfaceColor,
+    statusBarBrightness: Brightness.light,
+    systemNavigationBarIconBrightness: Brightness.dark,
+    systemNavigationBarColor: AppColors.surfaceColor
+  ));
   runApp(const MyApp());
 }
 

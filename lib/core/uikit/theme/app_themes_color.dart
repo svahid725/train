@@ -4,7 +4,7 @@ class AppColors{
   static const Color surfaceColor = Color(0xffF9FAFB);
   static const Color balck = Color(0xff191921);
   static const Color primaryOrange = Color(0xffF68625);
-  static const Color orangeBG = Color(0xffFB8D00);
+  static const Color orange6 = Color(0xffFB8D00);
   static const Color lightOrange = Color(0xffFFAB07);
   static const Color orangeFilterButton = Color(0xffFF9900);
   static const Color starOrange = lightOrange ;
@@ -18,4 +18,7 @@ class AppColors{
   static const Color mainGreen = Color(0xff00CE4E);
   static const Color lightGreen = Color(0xffBFF0DC);
   static const Color grayText = Color(0xff808080);
+  static const Color darkBlue = Color(0xff0259D2);
+  static final Color borderlessCardShadow = const Color(0x8D3D001A).withOpacity(0.1);
+
 }
