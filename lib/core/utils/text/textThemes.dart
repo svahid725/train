@@ -16,8 +16,8 @@ TextStyle textStyle(
       fontFamily: 'vazir');
 }
 
-TextStyle whiteBoldTitleStyle() {
-  return textStyle(Color(0xffffffff), 18, 1.2, FontWeight.w800);
+TextStyle boldTitleStyle(bool isWhite) {
+  return textStyle(isWhite ? const Color(0xffffffff) : AppColors.darkPrimary9, 18, 1.2, FontWeight.w800);
 }
 
 TextStyle onBGbodyStyle() {
@@ -50,6 +50,9 @@ TextStyle body1DarkStyle(){
 }
 TextStyle body2DarkStyle(){
   return textStyle(AppColors.darkPrimary9, 12, 1.5, FontWeight.w300);
+}
+TextStyle lightStyle(){
+  return textStyle(AppColors.darkPrimary9, 12,1.8, FontWeight.w200);
 }
 
 

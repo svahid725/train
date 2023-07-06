@@ -3,13 +3,23 @@ import 'package:get/get.dart';
 
 class MainController extends GetxController {
   PageController courseCardsController = PageController(initialPage: 1);
-  int currentValue = 1 ;
+  PageController mainPageController = PageController(initialPage: 0);
+  int courseSliderCurrentValue = 1;
 
-  void onPageChange(int index){
-  courseCardsController.animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
-  currentValue = index;
-  update();
+  int bottomNavIndex = 1;
+
+  void onPageChange({
+    required int index,
+    required PageController controller,
+  }) {
+    controller.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeIn,
+    );
+    update();
   }
+
   final List<String> icons = [
     'assets/icons/lightning.png',
     'assets/icons/home_indicator.png',

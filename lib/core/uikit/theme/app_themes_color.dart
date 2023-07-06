@@ -4,8 +4,10 @@ class AppColors{
   static const Color surfaceColor = Color(0xffF9FAFB);
   static const Color balck = Color(0xff191921);
   static const Color primaryOrange = Color(0xffF68625);
+  static const Color orange7 = Color(0xffF57D00);
   static const Color orange6 = Color(0xffFB8D00);
   static const Color lightOrange = Color(0xffFFAB07);
+
   static const Color orangeFilterButton = Color(0xffFF9900);
   static const Color starOrange = lightOrange ;
   static const Color milky = Color(0xffFCF2E4);
