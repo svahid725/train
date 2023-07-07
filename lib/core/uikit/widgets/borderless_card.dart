@@ -17,7 +17,7 @@ class BorderlessCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         boxShadow:[
           BoxShadow(
-            color:AppColors.borderlessCardShadow,
+            color:Color(0x022F4526),
             blurRadius: 16,
             offset: const Offset(0, 4)
           ),

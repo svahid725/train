@@ -6,7 +6,7 @@ class MainController extends GetxController {
   PageController mainPageController = PageController(initialPage: 0);
   int courseSliderCurrentValue = 1;
 
-  int bottomNavIndex = 1;
+  int bottomNavIndex = 0;
 
   void onPageChange({
     required int index,

@@ -7,10 +7,12 @@ class Spaces {
 }
 
 SizedBox szdBoxH8 = const SizedBox(height: 8,);
+SizedBox szdBoxH10 = const SizedBox(height: 10,);
 SizedBox szdBoxH12 = const SizedBox(height: 12,);
 SizedBox szdBoxH16 = const SizedBox(height: 16,);
 SizedBox szdBoxH20 = const SizedBox(height: 20,);
 SizedBox szdBoxH24 = const SizedBox(height: 24,);
+SizedBox szdBoxH32 = const SizedBox(height: 32,);
 SizedBox szdBoxH36 = const SizedBox(height: 36,);
 
 

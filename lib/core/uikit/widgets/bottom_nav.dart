@@ -32,8 +32,20 @@ class BottomNav extends StatelessWidget {
             children: [
               bottomNavItem(
                 label: 'خانه',
-                index: 1,
+                index: 0,
                 imageName: 'home',
+                onTap: () {
+                  controller.bottomNavIndex = 0;
+                  controller.onPageChange(
+                    index: 0,
+                    controller: controller.mainPageController,
+                  );
+                },
+              ),
+              bottomNavItem(
+                label: 'دوره‌ها',
+                index: 1,
+                imageName: 'courses',
                 onTap: () {
                   controller.bottomNavIndex = 1;
                   controller.onPageChange(
@@ -43,25 +55,13 @@ class BottomNav extends StatelessWidget {
                 },
               ),
               bottomNavItem(
-                label: 'دوره‌ها',
+                label: 'پروفایل',
                 index: 2,
-                imageName: 'courses',
+                imageName: 'profile',
                 onTap: () {
                   controller.bottomNavIndex = 2;
                   controller.onPageChange(
                     index: 2,
-                    controller: controller.mainPageController,
-                  );
-                },
-              ),
-              bottomNavItem(
-                label: 'پروفایل',
-                index: 3,
-                imageName: 'profile',
-                onTap: () {
-                  controller.bottomNavIndex = 3;
-                  controller.onPageChange(
-                    index: 3,
                     controller: controller.mainPageController,
                   );
                 },

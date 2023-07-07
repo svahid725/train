@@ -10,6 +10,7 @@ import 'package:train/core/uikit/widgets/borderless_card.dart';
 import 'package:train/core/uikit/widgets/bottom_nav.dart';
 import 'package:train/core/uikit/widgets/button.dart';
 import 'package:train/core/uikit/widgets/course_chip.dart';
+import 'package:train/core/uikit/widgets/course_detail_card.dart';
 import 'package:train/core/utils/text/textThemes.dart';
 import 'package:train/features/courses/screens/course_screen.dart';
 import 'package:train/features/main/controllers/main_controller.dart';
@@ -23,7 +24,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: BottomNav(),
         backgroundColor: AppColors.surfaceColor,
         body: GetBuilder(
@@ -31,6 +32,10 @@ class MainScreen extends StatelessWidget {
           builder: (controller) {
             return PageView(
                 controller: controller.mainPageController,
+                onPageChanged: (value) {
+                  controller.bottomNavIndex = value;
+                  controller.update();
+                },
                 children: [
                   Column(
                     children: [
@@ -40,8 +45,8 @@ class MainScreen extends StatelessWidget {
                       const BodyWidgets()
                     ],
                   ),
+                  CourseScreen(),
                   ProfileScreen(),
-                  CourseScreen()
                 ]);
           },
         ),
@@ -201,145 +206,13 @@ class BodyWidgets extends StatelessWidget {
           ),
         ),
         szdBoxH24,
-        Container(
-          height: 220,
-          width: Get.width,
-          child: ListView.builder(
-            itemCount: 3,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return Container(
-                margin: EdgeInsets.only(
-                  left: index == 2 ? 20 : 10,
-                  right: index == 0 ? 20 : 0,
-                ),
-                height: 220,
-                width: 350,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                        color: AppColors.borderlessCardShadow, blurRadius: 16)
-                  ],
-                ),
-                child: Stack(
-                  children: [
-                    Container(
-                      height: 64,
-                      child: Image.asset('assets/images/Kremlin.png'),
-                    ),
-                    Container(
-                      height: 64,
-                      child: SvgPicture.asset('assets/svg/KremlinBG.svg'),
-                    ),
-                    const Positioned(
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            CourseChip(country: 'Russia', label: 'A2'),
-                            CourseChip(country: 'star', label: '4.5'),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(top: -15,
-                      left: 100,
-                        right: 100,
-                        child: Image.asset('assets/images/user.png'),),
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-
-                        children: [
-                          const SizedBox(
-                            height: 104,
-                          ),
-                          Text(
-                            'آموزش زبان روسی - سطح A2',
-                            style: boldTitleStyle(false),
-                          ),
-                          szdBoxH8,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'مدرس: ',
-                                style: lightStyle(),
-                              ),
-                              Text(
-                                'محمدحسین حیدرزاده',
-                                style: bodyBold2Style(AppColors.darkPrimary9)
-                                    .copyWith(height: 1.8),
-                              ),
-                            ],
-                          ),
-                          szdBoxH12,
-                          Divider(
-                            color: Colors.black.withOpacity(0.05),
-                            thickness: 1,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.schedule,
-                                    color: AppColors.darkPrimary6,
-                                    size: 16,
-                                  ),
-                                  szdBoxW8,
-                                  Text(
-                                    '۲۳ ساعت آموزش',
-                                    style: body2DarkStyle().copyWith(
-                                        color: AppColors.darkPrimary4,
-                                        height: 1.8),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.attach_money,
-                                    color: AppColors.darkPrimary6,
-                                    size: 16,
-                                  ),
-                                  szdBoxW8,
-                                  Text(
-                                    '۱,۲۰۰,۰۰۰ تومان',
-                                    style: body2DarkStyle().copyWith(
-                                        color: AppColors.darkPrimary4,
-                                        decoration: TextDecoration.lineThrough,
-                                        height: 1.8),
-                                  ),
-                                  const SizedBox(
-                                    width: 4,
-                                  ),
-                                  Text(
-                                    'رایگان!',
-                                    style: bodyBold2Style(AppColors.mainGreen)
-                                        .copyWith(height: 1.8),
-                                  )
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              );
-            },
-          ),
-        )
+        const CourseDetailCard()
       ],
     );
   }
 }
+
+
 
 class CustomPageIndicator extends StatelessWidget {
   const CustomPageIndicator({
@@ -425,11 +298,13 @@ class TopSliderItem extends StatelessWidget {
                     ],
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'آموزش زبان انگلیسی - سطح A2',
                         style: boldTitleStyle(true),
                       ),
+                      szdBoxH12,
                       Text(
                         '۲۳ از ۳۴ درس مشاهده شدهA2',
                         style: onBGbodyStyle(),
