@@ -107,8 +107,9 @@ class CourseDetailCard extends StatelessWidget {
                               szdBoxW8,
                               Text(
                                 '۲۳ ساعت آموزش',
-                                style: body2DarkStyle().copyWith(
-                                    color: AppColors.darkPrimary4, height: 1.8),
+                                style: body2Style(
+                                        color: AppColors.darkPrimary4)
+                                    .copyWith(height: 1.8),
                               )
                             ],
                           ),
@@ -122,10 +123,12 @@ class CourseDetailCard extends StatelessWidget {
                               szdBoxW8,
                               Text(
                                 '۱,۲۰۰,۰۰۰ تومان',
-                                style: body2DarkStyle().copyWith(
-                                    color: AppColors.darkPrimary4,
-                                    decoration: TextDecoration.lineThrough,
-                                    height: 1.8),
+                                style: body2Style(
+                                  color: AppColors.darkPrimary4,
+                                ).copyWith(
+                                  decoration: TextDecoration.lineThrough,
+                                  height: 1.8,
+                                ),
                               ),
                               const SizedBox(
                                 width: 4,

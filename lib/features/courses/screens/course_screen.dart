@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:train/common/spaces_and_numbers.dart';
 import 'package:train/core/uikit/theme/app_themes_color.dart';
@@ -18,7 +19,8 @@ class CourseScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
                     szdBoxH36,
@@ -50,7 +52,10 @@ class CourseScreen extends StatelessWidget {
                     szdBoxH32,
                     Row(
                       children: [
-                        Text('جدیدترین دوره‌ها',style: heavyTitleStyle().apply(color: AppColors.grayBold),),
+                        Text(
+                          'جدیدترین دوره‌ها',
+                          style: heavyTitleStyle(true),
+                        ),
                       ],
                     ),
                     szdBoxH24,
@@ -63,12 +68,18 @@ class CourseScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   children: [
-                    Text('دوره های محبوب',style: heavyTitleStyle().apply(color: AppColors.grayBold),),
+                    Text(
+                      'دوره های محبوب',
+                      style: heavyTitleStyle(true),
+                    ),
                   ],
                 ),
               ),
               szdBoxH24,
               const CourseDetailCard(),
+              SizedBox(
+                height: 100,
+              )
             ],
           ),
         ),
@@ -125,7 +136,7 @@ class SearchBar extends StatelessWidget {
             width: 256,
             child: TextField(
               textDirection: TextDirection.rtl,
-              style: body1DarkStyle(),
+              style: body1Style(color: AppColors.grayText),
               cursorColor: AppColors.orangeFilterButton,
               decoration: InputDecoration(
                 prefixIcon: const Icon(

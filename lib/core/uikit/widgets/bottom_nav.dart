@@ -9,6 +9,7 @@ import '../../utils/text/textThemes.dart';
 class BottomNav extends StatelessWidget {
   BottomNav({Key? key}) : super(key: key);
   final MainController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
@@ -89,10 +90,8 @@ class BottomNav extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             label,
-            style: body2DarkStyle().copyWith(
+            style: body2Style(color:  controller.bottomNavIndex == index ? AppColors.orange7 : AppColors.darkPrimary9).copyWith(
               fontWeight: FontWeight.w400,
-              color:
-                  controller.bottomNavIndex == index ? AppColors.orange7 : null,
             ),
           )
         ],

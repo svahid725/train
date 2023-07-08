@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:train/core/routes/screen_routes.dart';
+import 'package:train/core/uikit/theme/app_themes_color.dart';
 
 class MainController extends GetxController {
   PageController courseCardsController = PageController(initialPage: 1);
@@ -17,6 +21,8 @@ class MainController extends GetxController {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeIn,
     );
+
+    // Get.to(index == 1 ? AppPages.course.page : index == 2 ? AppPages.profile.page : null );
     update();
   }
 

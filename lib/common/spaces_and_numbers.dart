@@ -19,3 +19,4 @@ SizedBox szdBoxH36 = const SizedBox(height: 36,);
 SizedBox szdBoxW8 = const SizedBox(width: 8,);
 SizedBox szdBoxW10 = const SizedBox(width: 10,);
 SizedBox szdBoxW16 = const SizedBox(width: 16,);
+SizedBox szdBoxW20 = const SizedBox(width: 20,);

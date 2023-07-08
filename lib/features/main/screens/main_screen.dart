@@ -22,22 +22,22 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: BottomNav(),
-        backgroundColor: AppColors.surfaceColor,
-        body: GetBuilder(
-          init: controller,
-          builder: (controller) {
-            return PageView(
-                controller: controller.mainPageController,
-                onPageChanged: (value) {
-                  controller.bottomNavIndex = value;
-                  controller.update();
-                },
-                children: [
-                  Column(
+    return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: BottomNav(),
+      backgroundColor: AppColors.surfaceColor,
+      body: GetBuilder(
+        init: controller,
+        builder: (controller) {
+          return PageView(
+              controller: controller.mainPageController,
+              onPageChanged: (value) {
+                controller.bottomNavIndex = value;
+                controller.update();
+              },
+              children: [
+                SafeArea(
+                  child: Column(
                     children: [
                       szdBoxH24,
                       MainScreenTopSlider(controller: controller),
@@ -45,11 +45,11 @@ class MainScreen extends StatelessWidget {
                       const BodyWidgets()
                     ],
                   ),
-                  CourseScreen(),
-                  ProfileScreen(),
-                ]);
-          },
-        ),
+                ),
+                CourseScreen(),
+                ProfileScreen(),
+              ]);
+        },
       ),
     );
   }
@@ -170,7 +170,7 @@ class BodyWidgets extends StatelessWidget {
                     ),
                     Text(
                       '۱۶ از  ۲۰ دقیقه',
-                      style: body1DarkStyle(),
+                      style: body1Style(color: AppColors.darkPrimary9),
                     ),
                     Text(
                       'زمان صرف‌شده آموزش',
@@ -202,7 +202,7 @@ class BodyWidgets extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
             'دوره های جدید و جذاب',
-            style: heavyTitleStyle(),
+            style: heavyTitleStyle(false),
           ),
         ),
         szdBoxH24,
@@ -211,8 +211,6 @@ class BodyWidgets extends StatelessWidget {
     );
   }
 }
-
-
 
 class CustomPageIndicator extends StatelessWidget {
   const CustomPageIndicator({
