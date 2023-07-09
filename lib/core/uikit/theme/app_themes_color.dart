@@ -33,7 +33,7 @@ class AppColors{
 
   static final Color borderlessCardShadow = const Color(0x8D3D001A).withOpacity(0.1);
   static final Color profileImageShadow = const Color(0x8D3D0026).withOpacity(0.15);
-  static final Color borderedCardShadow = const Color(0x022F4526).withOpacity(0.15);
+  static final Color borderedCardShadow = const Color(0xff022F4526).withOpacity(0.15);
 
 
 }
