@@ -92,6 +92,7 @@ class MainScreenTopSlider extends StatelessWidget {
                   ],
                 ),
                 child: PageView.builder(
+                  padEnds: false,
                   allowImplicitScrolling: true,
                   scrollDirection: Axis.horizontal,
                   onPageChanged: (value) {
@@ -246,6 +247,7 @@ class CustomPageIndicator extends StatelessWidget {
       child: Image.asset(
         controller.icons[index],
         fit: BoxFit.cover,
+        colorBlendMode: BlendMode.srcIn,
         color: index == 0
             ? AppColors.darkBlue
             : index == controller.courseSliderCurrentValue

@@ -5,6 +5,7 @@ import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:train/common/spaces_and_numbers.dart';
 import 'package:train/core/uikit/theme/app_themes_color.dart';
 import 'package:train/core/uikit/widgets/course_detail_card.dart';
+import 'package:train/core/uikit/widgets/search_bar.dart';
 import 'package:train/core/utils/text/textThemes.dart';
 import 'package:train/features/courses/controllers/course_controller.dart';
 
@@ -25,7 +26,45 @@ class CourseScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     szdBoxH36,
-                    const SearchBar(),
+                    Row(
+                      children: [
+                         Expanded(
+                          child: MySearchBar(
+                            hintText: 'جستجوی دوره‌ها',
+                            itemColors: AppColors.grayText,
+                            borderColor: AppColors.lightGrayInputBorder,
+                            controller: controller.searchController,
+                          ),
+                        ),
+                        szdBoxW10,
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ButtonStyle(
+                            elevation: MaterialStateProperty.all(0),
+                            backgroundColor: MaterialStateProperty.all(
+                                AppColors.orangeFilterButton),
+                            padding: MaterialStateProperty.all(
+                              const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 8),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                'assets/icons/filter.png',
+                                height: 14,
+                                width: 14,
+                              ),
+                              szdBoxW10,
+                              Text(
+                                'فیلتر',
+                                style: bodyBold1Style(Colors.white),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                     szdBoxH32,
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -169,7 +208,9 @@ class LanguageDetailsCard extends StatelessWidget {
   const LanguageDetailsCard({
     super.key,
     required this.imageName,
-    required this.title, required this.students, required this.courses,
+    required this.title,
+    required this.students,
+    required this.courses,
   });
 
   final String imageName;
@@ -202,7 +243,12 @@ class LanguageDetailsCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(child: Image.asset('assets/icons/${imageName}48.png',height: 48,width: 48,)),
+          Center(
+              child: Image.asset(
+            'assets/icons/${imageName}48.png',
+            height: 48,
+            width: 48,
+          )),
           szdBoxH8,
           Text(
             title,
@@ -211,24 +257,46 @@ class LanguageDetailsCard extends StatelessWidget {
           szdBoxH24,
           Row(
             children: [
-              Image.asset('assets/icons/profile.png',width: 12,height: 12,color: AppColors.black,),
+              Image.asset(
+                'assets/icons/profile.png',
+                width: 12,
+                height: 12,
+                color: AppColors.black,
+              ),
               szdBoxW8,
               Row(
                 children: [
-                  Text('${students} ',style: bodyBold1Style(AppColors.darkPrimary9),),
-                  Text('زبان آموز',style: body2Style(color: AppColors.darkPrimary9),),
+                  Text(
+                    '${students} ',
+                    style: bodyBold1Style(AppColors.darkPrimary9),
+                  ),
+                  Text(
+                    'زبان آموز',
+                    style: body2Style(color: AppColors.darkPrimary9),
+                  ),
                 ],
               ),
             ],
           ),
           Row(
             children: [
-              Image.asset('assets/icons/courses.png',width: 12,height: 12,color: AppColors.black,),
+              Image.asset(
+                'assets/icons/courses.png',
+                width: 12,
+                height: 12,
+                color: AppColors.black,
+              ),
               szdBoxW8,
               Row(
                 children: [
-                  Text('${courses} ',style: bodyBold1Style(AppColors.darkPrimary9),),
-                  Text('زبان آموز',style: body2Style(color: AppColors.darkPrimary9),),
+                  Text(
+                    '${courses} ',
+                    style: bodyBold1Style(AppColors.darkPrimary9),
+                  ),
+                  Text(
+                    'زبان آموز',
+                    style: body2Style(color: AppColors.darkPrimary9),
+                  ),
                 ],
               ),
             ],
@@ -239,74 +307,4 @@ class LanguageDetailsCard extends StatelessWidget {
   }
 }
 
-class SearchBar extends StatelessWidget {
-  const SearchBar({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Expanded(
-          child: SizedBox(
-            height: 38,
-            width: 256,
-            child: TextField(
-              textDirection: TextDirection.rtl,
-              style: body1Style(color: AppColors.grayText),
-              cursorColor: AppColors.orangeFilterButton,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: AppColors.grayText,
-                ),
-                hintText: 'جستجوی دوره‌ها',
-                hintStyle: buttonLabelStyle(AppColors.grayText)
-                    .copyWith(fontWeight: FontWeight.w400),
-                contentPadding: const EdgeInsets.only(top: 4),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                      color: AppColors.lightGrayInputBorder, width: 1),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                      color: AppColors.lightGrayInputBorder, width: 1),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-              ),
-            ),
-          ),
-        ),
-        szdBoxW10,
-        ElevatedButton(
-          onPressed: () {},
-          style: ButtonStyle(
-            elevation: MaterialStateProperty.all(0),
-            backgroundColor:
-                MaterialStateProperty.all(AppColors.orangeFilterButton),
-            padding: MaterialStateProperty.all(
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            ),
-          ),
-          child: Row(
-            children: [
-              Image.asset(
-                'assets/icons/filter.png',
-                height: 14,
-                width: 14,
-              ),
-              szdBoxW10,
-              Text(
-                'فیلتر',
-                style: bodyBold1Style(Colors.white),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}

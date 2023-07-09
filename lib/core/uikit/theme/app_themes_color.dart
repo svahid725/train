@@ -30,6 +30,7 @@ class AppColors{
   static const Color milky = Color(0xffFCF2E4);
 
   static const Color darkBlue = Color(0xff0259D2);
+  static const Color mainBlue = Color(0xff008EFF);
 
   static final Color borderlessCardShadow = const Color(0x8D3D001A).withOpacity(0.1);
   static final Color profileImageShadow = const Color(0x8D3D0026).withOpacity(0.15);

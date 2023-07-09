@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       textDirection: TextDirection.rtl,
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.cupertino,
-      getPages: [AppPages.main, AppPages.profile, AppPages.course],
+      getPages: [AppPages.main, AppPages.profile, AppPages.course,/*AppPages.folowing*/],
       theme: themeData,
       initialRoute: AppPages.main.name,
     );
