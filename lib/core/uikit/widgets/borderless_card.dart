@@ -11,15 +11,15 @@ class BorderlessCard extends StatelessWidget {
     return Container(
       width: 170,
       height: 112,
-      padding: EdgeInsets.all(14),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: const Color(0xffFAFAFB),
         borderRadius: BorderRadius.circular(8),
-        boxShadow:[
+        boxShadow:const [
           BoxShadow(
             color:Color(0x022F4526),
             blurRadius: 16,
-            offset: const Offset(0, 4)
+            offset: Offset(0, 4)
           ),
         ]
       ),

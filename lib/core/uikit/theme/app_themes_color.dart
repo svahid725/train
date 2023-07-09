@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class AppColors{
   static const Color surfaceColor = Color(0xffF9FAFB);
-  static const Color balck = Color(0xff191921);
+  static const Color black = Color(0xff191921);
+
+  static const Color error = Color(0xffE50000);
 
   static const Color primaryOrange = Color(0xffF68625);
   static const Color orange7 = Color(0xffF57D00);

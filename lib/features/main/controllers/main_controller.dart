@@ -33,4 +33,19 @@ class MainController extends GetxController {
     'assets/icons/gray_circle.png',
     'assets/icons/gray_circle.png',
   ];
+
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  bool isDrawerOpen = false;
+
+  void openDrawer(BuildContext context) {
+    Scaffold.of(context).openDrawer();
+    update();
+
+    print('is open : ${isDrawerOpen}');
+  }
+  void closeDrawer(BuildContext context) {
+    Scaffold.of(context).closeDrawer();
+    update();
+    print('is open : ${isDrawerOpen}');
+  }
 }

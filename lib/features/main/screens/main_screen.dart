@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:train/common/spaces_and_numbers.dart';
 import 'package:train/core/uikit/theme/app_themes_color.dart';
 import 'package:train/core/uikit/widgets/borderless_card.dart';
@@ -14,22 +13,25 @@ import 'package:train/core/uikit/widgets/course_detail_card.dart';
 import 'package:train/core/utils/text/textThemes.dart';
 import 'package:train/features/courses/screens/course_screen.dart';
 import 'package:train/features/main/controllers/main_controller.dart';
+import 'package:train/features/profile/controllers/profile_controller.dart';
 import 'package:train/features/profile/screens/profile_screen.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
   final MainController controller = Get.put(MainController());
-
+  final ProfileController profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: BottomNav(),
-      backgroundColor: AppColors.surfaceColor,
-      body: GetBuilder(
-        init: controller,
-        builder: (controller) {
-          return PageView(
+
+    return GetBuilder(
+      init: controller,
+      builder: (controller) {
+        return Scaffold(
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: controller.isDrawerOpen ? const SizedBox() : BottomNav() ,
+          drawerEnableOpenDragGesture: false,
+          backgroundColor: AppColors.surfaceColor,
+          body: PageView(
               controller: controller.mainPageController,
               onPageChanged: (value) {
                 controller.bottomNavIndex = value;
@@ -48,11 +50,14 @@ class MainScreen extends StatelessWidget {
                 ),
                 CourseScreen(),
                 ProfileScreen(),
-              ]);
-        },
-      ),
+              ])
+        );
+      },
     );
+
+
   }
+
 }
 
 class MainScreenTopSlider extends StatelessWidget {
@@ -99,7 +104,7 @@ class MainScreenTopSlider extends StatelessWidget {
                   itemCount: 5,
                   controller: controller.courseCardsController,
                   itemBuilder: (context, index) {
-                    return const TopSliderItem();
+                    return TopSliderItem(index: index,);
                   },
                 ),
               ),
@@ -135,63 +140,69 @@ class BodyWidgets extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              BorderlessCard(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'هدف امروز',
-                          style: extraBoldTitleStyle(),
-                        ),
-                        CircularPercentIndicator(
-                          radius: 13.5,
-                          percent: 62 / 100,
-                          backgroundWidth: 1,
-                          lineWidth: 2.5,
-                          progressColor: AppColors.mainGreen,
-                          backgroundColor: const Color(0xffBFF0DC),
-                          animation: true,
-                          center: const Text(
-                            '62%',
-                            style: TextStyle(
-                              color: AppColors.mainGreen,
-                              fontSize: 8,
-                              fontWeight: FontWeight.w500,
+              Expanded(
+                child: BorderlessCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'هدف امروز',
+                            style: extraBoldTitleStyle(),
+                          ),
+                          CircularPercentIndicator(
+                            radius: 13.5,
+                            percent: 62 / 100,
+                            backgroundWidth: 1,
+                            lineWidth: 2.5,
+                            progressColor: AppColors.mainGreen,
+                            backgroundColor: const Color(0xffBFF0DC),
+                            animation: true,
+                            center: const Text(
+                              '62%',
+                              style: TextStyle(
+                                color: AppColors.mainGreen,
+                                fontSize: 8,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      '۱۶ از  ۲۰ دقیقه',
-                      style: body1Style(color: AppColors.darkPrimary9),
-                    ),
-                    Text(
-                      'زمان صرف‌شده آموزش',
-                      style: bodyBold2Style(AppColors.darkPrimary9),
-                    )
-                  ],
+                        ],
+                      ),
+                      Text(
+                        '۱۶ از  ۲۰ دقیقه',
+                        style: body1Style(color: AppColors.darkPrimary9),
+                      ),
+                      Text(
+                        'زمان صرف‌شده آموزش',
+                        style: bodyBold2Style(AppColors.darkPrimary9),
+                      )
+                    ],
+                  ),
                 ),
               ),
-              BorderlessCard(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'عملکرد شما',
-                      style: extraBoldTitleStyle(),
-                    ),
-                    szdBoxH8,
-                    Image.asset(
-                      'assets/images/curve.png',
-                    )
-                  ],
+              szdBoxW10,
+              Expanded(
+                child: BorderlessCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'عملکرد شما',
+                        style: extraBoldTitleStyle(),
+                      ),
+                      szdBoxH8,
+                      Image.asset(
+                        'assets/images/curve.png',
+                        width: 120,
+                        height: 38,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -247,12 +258,29 @@ class CustomPageIndicator extends StatelessWidget {
 
 class TopSliderItem extends StatelessWidget {
   const TopSliderItem({
-    super.key,
+    super.key, required this.index,
   });
-
+  final int index ;
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return index == 0 ? Container(height: 194,
+      width: 390,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.all(12),
+      decoration: ShapeDecoration(
+
+        gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+          Color(0xff64AFF4),
+          Color(0xff5969F8),
+
+        ]) ,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),): Stack(
       children: [
         Container(
           height: 194,
@@ -287,7 +315,7 @@ class TopSliderItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  const Row(
                     children: [
                       CourseChip(
                         label: 'A2',
@@ -336,6 +364,100 @@ class TopSliderItem extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+  SafeArea buildDrawer(ProfileController controller, BuildContext context) {
+    return SafeArea(
+      child: Stack(
+        children: [
+          BackdropFilter(
+            filter: ImageFilter.blur(
+              sigmaX: 5,
+              sigmaY: 5,
+            ),
+            child: const SizedBox.expand(),
+          ),
+          Drawer(
+            backgroundColor: Colors.white,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(32)),
+            ),
+            elevation: 0,
+            child: Container(
+              decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                BoxShadow(
+                    color: AppColors.borderlessCardShadow,
+                    blurRadius: 16,
+                    offset: const Offset(0, 4))
+              ]),
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 21),
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () => controller.closeDrawer(context),
+                    child:  Row(
+                      children: [
+                        TextButton(onPressed: () {
+                          Get.back();
+                        }, child:const Row(
+                          children: [
+                            Icon(Icons.keyboard_arrow_right, color: AppColors.darkPrimary9,),
+                            Text(
+                              'بستن',
+                              style: TextStyle(
+                                  color: AppColors.darkPrimary9,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  height: 1),
+                            ),
+                          ],
+                        ), ),
+
+                      ],
+                    ),
+                  ),
+                  szdBoxH36,
+                  DrawerBodyItem(
+                    svg: 'stroke',
+                    onTap: () {},
+                    title: 'تنظیمات',
+                  ),
+                  DrawerBodyItem(
+                    svg: 'question',
+                    title: 'درباره GO2TRain',
+                    onTap: () {},
+                  ),
+                  DrawerBodyItem(
+                    svg: 'telephone',
+                    title: 'تماس با ما',
+                    onTap: () {},
+                  ),
+                  DrawerBodyItem(
+                    svg: 'mail',
+                    title: 'ارسال ایمیل به پشتیبانی',
+                    onTap: () {},
+                  ),
+                  DrawerBodyItem(
+                    svg: 'rules',
+                    title: 'سیاست‌های حریم خصوصی',
+                    onTap: () {},
+                  ),
+                  DrawerBodyItem(
+                    svg: 'FAQ',
+                    title: 'سوالات متداول',
+                    onTap: () {},
+                  ),
+                  DrawerBodyItem(
+                    svg: 'logout',
+                    title: 'خروج از حساب',
+                    onTap: () {},
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

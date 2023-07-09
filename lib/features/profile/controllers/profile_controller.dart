@@ -7,11 +7,14 @@ import 'package:train/features/main/controllers/main_controller.dart';
 
 class ProfileController extends GetxController{
 
-
-
-
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  bool isDrawerOpen = false;
   void openDrawer(BuildContext context) {
     Scaffold.of(context).openDrawer();
+    update();
+  }
+  void closeDrawer(BuildContext context) {
+    Scaffold.of(context).closeDrawer();
     update();
   }
 }

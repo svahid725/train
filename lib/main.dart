@@ -12,6 +12,7 @@ void main() {
         statusBarColor: AppColors.surfaceColor,
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarIconBrightness: Brightness.dark,
         systemNavigationBarColor: AppColors.surfaceColor),
   );
   runApp(const MyApp());
