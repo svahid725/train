@@ -4,7 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:train/core/routes/screen_routes.dart';
 import 'package:train/core/uikit/theme/app_themes_color.dart';
+import 'package:welltested/annotation.dart';
 
+@Welltested()
 class MainController extends GetxController {
   PageController courseCardsController = PageController(initialPage: 1);
   PageController mainPageController = PageController(initialPage: 0);

@@ -17,7 +17,7 @@ class BottomNav extends StatelessWidget {
       builder: (controller) {
         return Container(
           height: 72,
-          width: Get.width-40,
+          width: Get.width - 40,
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),

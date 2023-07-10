@@ -13,7 +13,7 @@ class BorderlessCard extends StatelessWidget {
       height: 112,
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xffFAFAFB),
+        color:  AppColors.surfaceColor,
         borderRadius: BorderRadius.circular(8),
         boxShadow:const [
           BoxShadow(

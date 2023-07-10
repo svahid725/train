@@ -1,11 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class Spaces {
-  static final double loginPaddings = Get.width /10 ;
-  static const double buttonHeight = 44;
-}
-
 SizedBox szdBoxH8 = const SizedBox(height: 8,);
 SizedBox szdBoxH10 = const SizedBox(height: 10,);
 SizedBox szdBoxH12 = const SizedBox(height: 12,);

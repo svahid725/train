@@ -40,6 +40,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   percent_indicator: ^4.2.3
   gradient_borders: ^1.0.0
+  welltested: ^1.0.4
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +66,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - .env
     - assets/images/
     - assets/svg/
     - assets/icons/
