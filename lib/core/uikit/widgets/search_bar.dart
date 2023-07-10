@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:train/core/uikit/theme/app_themes_color.dart';
 import 'package:train/core/utils/text/textThemes.dart';
-
+import 'package:welltested/annotation.dart';
+@Welltested()
 class MySearchBar extends StatelessWidget {
   const MySearchBar({
     super.key,

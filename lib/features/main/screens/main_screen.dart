@@ -15,7 +15,8 @@ import 'package:train/features/courses/screens/course_screen.dart';
 import 'package:train/features/main/controllers/main_controller.dart';
 import 'package:train/features/profile/controllers/profile_controller.dart';
 import 'package:train/features/profile/screens/profile_screen.dart';
-
+import 'package:welltested/annotation.dart';
+@Welltested()
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
   final MainController controller = Get.put(MainController());

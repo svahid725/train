@@ -748,6 +748,7 @@ class ProfileScreen extends StatelessWidget {
                     svg: 'logout',
                     title: 'خروج از حساب',
                     onTap: () {},
+                    isRed: true,
                   ),
                 ],
               ),
@@ -877,21 +878,23 @@ class HeaderItems extends StatelessWidget {
 }
 
 class DrawerBodyItem extends StatelessWidget {
-  const DrawerBodyItem({
+  DrawerBodyItem({
     super.key,
     required this.svg,
     required this.title,
     required this.onTap,
+    this.isRed = false
   });
 
   final String svg;
   final String title;
   final Function() onTap;
+  bool isRed ;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        title: Text(title, style: buttonLabelStyle(AppColors.black)),
+        title: Text(title, style: buttonLabelStyle(isRed ? AppColors.error :AppColors.black)),
         contentPadding: const EdgeInsets.only(right: 0),
         horizontalTitleGap: -5,
         trailing: const Icon(
